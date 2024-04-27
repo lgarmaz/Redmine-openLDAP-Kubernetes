@@ -6,7 +6,7 @@ Vamos a dividir este léeme en varias secciones explicando como llevar a cabo el
 ## Requisitos previos
 
 - Tener un clúster de Kubernetes configurado y acceso a él a través de `kubectl`.
-- Tener Minikube instalado.
+- Tener `Minikube` instalado.
 - Tener `kubectl` instalado.
 - Crear tres carpetas que nos servirán como volúmenes persistentes locales con la siguiente estructura:
     - redmine-pv
