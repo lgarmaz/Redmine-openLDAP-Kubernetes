@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  LDAP_ADMIN_BIND_DN: cn=admin,dc=prueba,dc=com
+  LDAP_ADMIN_BIND_PWD: admin2023
+  LDAP_ADMIN_PASSWORD: admin2023
+  LDAP_ADMIN_USERNAME: admin
+  LDAP_ADMINS_GROUP: admins
+  LDAP_BASE_DN: dc=prueba,dc=com
+  LDAP_DOMAIN: prueba.com
+  LDAP_IGNORE_CERT_ERRORS: "true"
+  LDAP_ORGANISATION: prueba
+  LDAP_READONLY_USER: "true"
+  LDAP_READONLY_USER_PASSWORD: admin2023
+  LDAP_READONLY_USER_USERNAME: user-ro
+  LDAP_REQUIRE_STARTTLS: "FALSE"
+  LDAP_TLS_VERIFY_CLIENT: never
+  LDAP_URI: ldap://openldap
+  NO_HTTPS: "TRUE"
+  PASSWORD_HASH: SSHA
+  PHPLDAPADMIN_HTTPS: "false"
+  PHPLDAPADMIN_LDAP_HOSTS: openldap
+  SERVER_HOSTNAME: localhost:18080
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: openldap-ldap-env
+  name: ldap-env
