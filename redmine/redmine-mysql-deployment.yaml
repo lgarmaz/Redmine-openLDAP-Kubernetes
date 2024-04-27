@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redmine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redmine
+  template:
+    metadata:
+      labels:
+        app: redmine
+    spec:
+      containers:
+      - name: redmine
+        image: redmine:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REDMINE_DB_MYSQL
+          value: mysql
+        - name: REDMINE_DB_PASSWORD
+          value: password_ejemplo
+        - name: REDMINE_SECRET_KEY_BASE
+          value: supersecretkey
+        volumeMounts:
+        - name: plugins
+          mountPath: /usr/src/redmine/plugins
+        - name: redmine-data
+          mountPath: /usr/src/redmine/files
+      volumes:
+      - name: plugins
+        persistentVolumeClaim:
+          claimName: redmine-pvc-plugins
+      - name: redmine-data
+        persistentVolumeClaim:
+          claimName: redmine-pvc-data
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mariadb:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password_ejemplo
+        - name: MYSQL_DATABASE
+          value: redmine
+        volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: manual
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redmine-pvc-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: manual
+
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redmine-pvc-plugins
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: manual
