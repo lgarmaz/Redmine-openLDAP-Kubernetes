@@ -10,10 +10,11 @@ Vamos a dividir este léeme en varias secciones explicando como llevar a cabo el
 - Tener `kubectl` instalado.
 - Crear tres carpetas que nos servirán como volúmenes persistentes locales con la siguiente estructura:
 - redmine-pv
-    |-- redmine-data
-    |-- plugins
+    - redmine-data
+    - plugins
 - mysql-pv
-    |-- db
+    - db
+
 
   *En este caso he puesto los nombres que he utilizado yo, pero estos nombres e incluso esta estructura puede ser modificada siempre que se referencien bien el los ficheros correspondientes*
   
