@@ -14,9 +14,8 @@ Vamos a dividir este léeme en varias secciones explicando como llevar a cabo el
     - plugins
 - mysql-pv
     - db
--->
 
-  *En este caso he puesto los nombres que he utilizado yo, pero estos nombres e incluso esta estructura puede ser modificada siempre que se referencien bien el los ficheros correspondientes*
+  **En este caso he puesto los nombres que he utilizado yo, pero estos nombres e incluso esta estructura puede ser modificada siempre que se referencien bien el los ficheros correspondientes**
   
 ## Despliegue de los Pods Redmine y MySQL.
 Redmine es una aplicación de gestión de proyectos y seguimiento de problemas, mientras que MySQL es una base de datos relacional utilizada por Redmine para almacenar datos.
